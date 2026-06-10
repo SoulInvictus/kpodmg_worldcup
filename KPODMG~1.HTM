@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-Pod-MG World Cup 2026 Bracket</title>
+<style>
+:root {
+  --bg1: #060d1e;
+  --bg2: #0c1a35;
+  --bg3: #142040;
+  --bg4: #1c2d50;
+  --border: #1e3060;
+  --red: #e30613;
+  --gold: #f5c518;
+  --teal: #00b4d8;
+  --text: #ffffff;
+  --text2: #8ba4c7;
+  --green: #1a8a4a;
+  --amber: #b87a00;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg1);
+  background-image:
+    radial-gradient(ellipse at 10% 60%, rgba(227,6,19,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 20%, rgba(0,180,216,0.06) 0%, transparent 55%);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(135deg, #080514 0%, #180828 45%, #0a1828 100%);
+  border-bottom: 3px solid var(--red);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+.header-logo svg { width: 52px; height: 52px; flex-shrink: 0; }
+.header-text { flex: 1; }
+.header-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--text2); margin-bottom: 2px;
+}
+.header-title {
+  font-size: 22px; font-weight: 900; line-height: 1.1;
+  background: linear-gradient(90deg, var(--gold) 0%, #fff 45%, var(--teal) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header-pill {
+  background: var(--red); color: #fff;
+  padding: 5px 14px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; white-space: nowrap;
+}
+
+/* ── NEXT GAME BANNER ── */
+#next-game-bar {
+  background: linear-gradient(90deg, #110820 0%, #081525 100%);
+  border-bottom: 1px solid rgba(245,197,24,0.25);
+  padding: 7px 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  flex-wrap: wrap;
+  min-height: 34px;
+}
+.ng-label {
+  background: var(--gold); color: #000;
+  font-size: 9px; font-weight: 900;
+  padding: 2px 8px; border-radius: 3px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  flex-shrink: 0;
+}
+.ng-live {
+  background: var(--red); color: #fff;
+  font-size: 9px; font-weight: 900;
+  padding: 2px 8px; border-radius: 3px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  flex-shrink: 0; animation: pulse 1.4s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; } 50% { opacity:0.55; }
+}
+
+/* ── TABS ── */
+.tabs {
+  display: flex; background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  overflow-x: auto;
+}
+.tab {
+  padding: 12px 22px; cursor: pointer;
+  font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text2);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s; white-space: nowrap;
+}
+.tab:hover { color: var(--text); }
+.tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ── LAYOUT ── */
+.layout { display: flex; min-height: calc(100vh - 115px); }
+.main-content { flex: 1; padding: 22px; overflow: hidden; min-width: 0; }
+.sidebar {
+  width: 270px; background: var(--bg2);
+  border-left: 1px solid var(--border);
+  padding: 18px; overflow-y: auto;
+  max-height: calc(100vh - 115px);
+  position: sticky; top: 115px;
+  flex-shrink: 0;
+}
+@media (max-width: 1080px) { .sidebar { width: 230px; } }
+@media (max-width: 820px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; position: static; max-height: none; border-left: none; border-top: 1px solid var(--border); }
+}
+
+/* ── SECTION HEADER ── */
+.section-hdr {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 16px;
+}
+.section-label {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text2);
+}
+.legend {
+  display: flex; gap: 14px; font-size: 10px;
+  color: var(--text2); flex-wrap: wrap; margin-bottom: 18px;
+}
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.ldot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── GROUPS GRID ── */
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 1200px) { .groups-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .groups-grid { grid-template-columns: 1fr; } }
+
+/* ── GROUP CARD ── */
+.group-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden;
+}
+.group-card-hdr {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 13px;
+  background: linear-gradient(90deg, rgba(227,6,19,0.18) 0%, rgba(0,180,216,0.1) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.group-letter {
+  font-size: 26px; font-weight: 900; color: var(--gold);
+  line-height: 1; min-width: 30px;
+}
+.group-meta { flex: 1; }
+.group-meta-title {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text2);
+}
+.status-badge {
+  font-size: 9px; font-weight: 700;
+  margin-top: 2px; letter-spacing: 0.5px;
+}
+
+/* ── STANDINGS TABLE ── */
+.s-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.s-table th {
+  background: rgba(0,0,0,0.35); padding: 5px 6px;
+  text-align: center; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase; color: var(--text2);
+}
+.s-table th.ta-l { text-align: left; padding-left: 10px; }
+.s-table td { padding: 6px 6px; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); }
+.s-table td.ta-l { text-align: left; padding-left: 8px; }
+.row-q1 { background: rgba(13,51,32,0.55); }
+.row-q2 { background: rgba(60,40,0,0.45); }
+.row-elim { background: rgba(50,8,8,0.5); }
+.pos-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 17px; height: 17px; border-radius: 50%;
+  font-size: 9px; font-weight: 800; margin-right: 4px; flex-shrink: 0;
+}
+.p1 { background: var(--gold); color: #000; }
+.p2 { background: #b0b0b0; color: #000; }
+.p3 { background: #7a5520; color: #fff; }
+.p4 { background: #2a2a2a; color: #666; }
+.team-cell { display: flex; align-items: center; gap: 5px; }
+.team-name {
+  font-weight: 600; font-size: 11px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 90px;
+}
+.owner-chip {
+  font-size: 8px; font-weight: 700; padding: 1px 5px;
+  border-radius: 3px; white-space: nowrap; flex-shrink: 0;
+}
+.gd-pos { color: #5ddb7a; }
+.gd-neg { color: #f06464; }
+
+/* ── MATCHES SECTION ── */
+.matches-toggle {
+  padding: 7px 13px; font-size: 10px; font-weight: 700;
+  color: var(--text2); cursor: pointer;
+  background: rgba(0,0,0,0.25); border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  user-select: none; letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.matches-toggle:hover { background: rgba(0,0,0,0.45); color: var(--text); }
+.matches-body { display: none; background: rgba(0,0,0,0.2); }
+.matches-body.open { display: block; }
+.match-row {
+  display: flex; align-items: center;
+  padding: 5px 12px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  gap: 4px;
+}
+.match-row:last-child { border-bottom: none; }
+.match-team {
+  flex: 1; font-size: 10px; color: var(--text2); font-weight: 500;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.match-team.right { text-align: right; }
+.score-btn {
+  padding: 2px 8px; background: var(--bg1);
+  border: 1px solid var(--border); border-radius: 4px;
+  font-weight: 700; font-size: 10px; min-width: 36px;
+  text-align: center; margin: 0 5px; cursor: pointer;
+  color: var(--gold); transition: background 0.2s; flex-shrink: 0;
+}
+.score-btn:hover { background: var(--border); }
+.score-btn.pending { color: var(--text2); font-weight: 400; font-size: 9px; }
+.round-tag {
+  font-size: 8px; font-weight: 700; color: var(--text2);
+  letter-spacing: 0.5px; min-width: 14px; flex-shrink: 0;
+}
+
+/* ── SIDEBAR PARTICIPANTS ── */
+.sidebar-title {
+  font-size: 10px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text2);
+  padding-bottom: 10px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.p-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px; margin-bottom: 10px;
+  transition: opacity 0.3s;
+}
+.p-card.all-out { opacity: 0.35; }
+.p-name {
+  font-size: 13px; font-weight: 800; margin-bottom: 7px;
+  display: flex; align-items: center; gap: 5px;
+}
+.p-name.crossed { text-decoration: line-through; color: var(--text2); }
+.p-teams { display: flex; flex-wrap: wrap; gap: 3px; }
+.t-chip {
+  font-size: 8px; font-weight: 700; padding: 2px 5px;
+  border-radius: 3px; border: 1px solid rgba(255,255,255,0.1);
+}
+.t-chip.out { opacity: 0.28; text-decoration: line-through; }
+.t-chip.potential { border-style: dashed; }
+
+/* ── FULL PARTICIPANTS TAB ── */
+.full-p-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.full-p-card {
+  background: var(--bg3); border-radius: 10px;
+  padding: 14px; transition: opacity 0.3s;
+}
+.full-p-card.all-out { opacity: 0.38; }
+.full-p-title {
+  font-size: 15px; font-weight: 800; margin-bottom: 10px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.full-team-row {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 11px;
+}
+.full-team-row:last-child { border-bottom: none; }
+.full-team-row.out { opacity: 0.35; text-decoration: line-through; }
+.grp-tag {
+  font-size: 9px; font-weight: 700; padding: 1px 5px;
+  border-radius: 3px; background: rgba(255,255,255,0.08);
+  color: var(--text2); flex-shrink: 0;
+}
+
+/* ── KNOCKOUT TAB ── */
+.ko-placeholder {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 70px 20px; text-align: center; color: var(--text2);
+}
+.ko-qualified-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 12px; margin-bottom: 22px;
+}
+.ko-group-box {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 11px;
+}
+.ko-group-label {
+  font-size: 10px; font-weight: 800; color: var(--gold);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ko-team-row {
+  display: flex; align-items: center; gap: 6px;
+  padding: 3px 0; font-size: 11px;
+}
+
+/* ── TAB SECTIONS ── */
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.82); z-index: 500;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg4); border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px; width: 340px; max-width: 92vw;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+}
+.modal-title {
+  font-size: 12px; font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+  text-align: center;
+}
+.modal-matchup {
+  display: flex; align-items: center;
+  gap: 10px; margin-bottom: 18px;
+}
+.modal-team-name {
+  flex: 1; font-size: 13px; font-weight: 700; text-align: center;
+}
+.modal-vs { color: var(--text2); font-weight: 900; flex-shrink: 0; }
+.score-inputs {
+  display: flex; align-items: center;
+  gap: 12px; justify-content: center; margin-bottom: 20px;
+}
+.score-input {
+  width: 72px; background: var(--bg1);
+  border: 2px solid var(--border); border-radius: 8px;
+  padding: 10px; text-align: center;
+  font-size: 28px; font-weight: 900; color: var(--gold);
+  outline: none; -moz-appearance: textfield;
+}
+.score-input::-webkit-outer-spin-button,
+.score-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.score-input:focus { border-color: var(--teal); }
+.modal-dash { color: var(--text2); font-size: 24px; font-weight: 900; }
+.modal-btns { display: flex; gap: 8px; }
+.btn {
+  flex: 1; padding: 10px; border-radius: 7px; border: none;
+  cursor: pointer; font-size: 11px; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase; transition: all 0.15s;
+}
+.btn-save { background: var(--red); color: #fff; }
+.btn-save:hover { background: #c0000e; }
+.btn-cancel { background: var(--border); color: var(--text2); }
+.btn-cancel:hover { background: var(--bg1); color: var(--text); }
+.btn-clear { background: #2d0a0a; color: #f08; border: 1px solid #600; }
+.btn-clear:hover { background: #400; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header>
+  <div class="header-logo">
+    <!-- FIFA 2026 Trophy SVG -->
+    <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
+      <!-- Base -->
+      <rect x="18" y="78" width="44" height="6" rx="2" fill="#F5C518"/>
+      <rect x="22" y="72" width="36" height="7" rx="1" fill="#F5C518"/>
+      <!-- Stem -->
+      <rect x="32" y="58" width="16" height="15" fill="#F5C518"/>
+      <!-- Cup body -->
+      <path d="M20 10 L60 10 L55 52 Q40 62 25 52 Z" fill="#F5C518"/>
+      <!-- Cup shine -->
+      <path d="M28 14 L38 14 L35 46 Q32 50 29 46 Z" fill="rgba(255,255,255,0.15)"/>
+      <!-- Handles -->
+      <path d="M20 14 Q6 14 6 28 Q6 42 20 44" stroke="#F5C518" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M60 14 Q74 14 74 28 Q74 42 60 44" stroke="#F5C518" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Handle accent -->
+      <path d="M20 14 Q8 14 8 28 Q8 40 20 44" stroke="#E30613" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M60 14 Q72 14 72 28 Q72 40 60 44" stroke="#E30613" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- FIFA text on cup -->
+      <text x="40" y="36" text-anchor="middle" fill="#060d1e" font-size="9" font-weight="900" font-family="Arial, sans-serif" letter-spacing="1">FIFA</text>
+      <text x="40" y="46" text-anchor="middle" fill="#060d1e" font-size="6" font-weight="700" font-family="Arial, sans-serif" letter-spacing="0.5">2026</text>
+      <!-- Stars above cup -->
+      <text x="40" y="8" text-anchor="middle" fill="#F5C518" font-size="7">★★★</text>
+    </svg>
+  </div>
+  <div class="header-text">
+    <div class="header-eyebrow">FIFA World Cup 2026™ · Canada · Mexico · USA</div>
+    <div class="header-title">K-Pod-MG World Cup Bracket</div>
+  </div>
+  <div class="header-pill">Group Stage</div>
+</header>
+
+<!-- ═══════════════ NEXT GAME BANNER ═══════════════ -->
+<div id="next-game-bar"><span class="ng-label">Loading…</span></div>
+
+<!-- ═══════════════ TABS ═══════════════ -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('groups')">⚽ Group Stage</div>
+  <div class="tab" onclick="switchTab('knockout')">🏆 Knockout Bracket</div>
+  <div class="tab" onclick="switchTab('participants')">👥 Participants</div>
+</div>
+
+<!-- ═══════════════ MAIN LAYOUT ═══════════════ -->
+<div class="layout">
+
+  <!-- CONTENT -->
+  <div class="main-content">
+
+    <!-- GROUPS TAB -->
+    <div class="tab-section active" id="tab-groups">
+      <div class="section-hdr">
+        <div class="section-label">Group Stage · 48 Teams · 12 Groups</div>
+        <div style="font-size:10px;color:var(--text2)">Kicks off June 11, 2026</div>
+      </div>
+      <div class="legend">
+        <span class="legend-item"><span class="ldot" style="background:#1a8a4a"></span> Qualified (1st/2nd)</span>
+        <span class="legend-item"><span class="ldot" style="background:#b87a00"></span> Potential (best 3rd)</span>
+        <span class="legend-item"><span class="ldot" style="background:#8a1a1a"></span> Eliminated (4th)</span>
+      </div>
+      <div class="groups-grid" id="groups-grid"></div>
+    </div>
+
+    <!-- KNOCKOUT TAB -->
+    <div class="tab-section" id="tab-knockout">
+      <div id="knockout-content"></div>
+    </div>
+
+    <!-- PARTICIPANTS TAB -->
+    <div class="tab-section" id="tab-participants">
+      <div class="section-hdr">
+        <div class="section-label">All Participants &amp; Their Teams</div>
+      </div>
+      <div class="full-p-grid" id="full-participants"></div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-title">⚽ Participants</div>
+    <div id="sidebar-participants"></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ MODAL ═══════════════ -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-title">Enter Match Result</div>
+    <div class="modal-matchup">
+      <div class="modal-team-name" id="m-home">Home</div>
+      <div class="modal-vs">vs</div>
+      <div class="modal-team-name" id="m-away">Away</div>
+    </div>
+    <div class="score-inputs">
+      <input type="number" class="score-input" id="sh" min="0" max="99" value="0">
+      <span class="modal-dash">–</span>
+      <input type="number" class="score-input" id="sa" min="0" max="99" value="0">
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-clear" id="btn-clr" onclick="clearResult()" style="display:none">Clear</button>
+      <button class="btn btn-save" onclick="saveResult()">Save ✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   OWNER COLOURS — one per participant
+   ============================================================ */
+const OC = {
+  Abrie:     '#FF6B6B',
+  Allison:   '#C084FC',
+  Antonio:   '#FCD34D',
+  Emma:      '#6EE7B7',
+  Fi:        '#86EFAC',
+  Garret:    '#2DD4BF',
+  Jenny:     '#FDE68A',
+  Jess:      '#F9A8D4',
+  Katherine: '#4ECDC4',
+  Lauren:    '#93C5FD',
+  Rob:       '#60A5FA',
+  Sinead:    '#FB923C',
+  Teddy:     '#FCA97A',
+};
+
+/* ============================================================
+   GROUP DATA
+   ============================================================ */
+const GROUPS = {
+  A: [
+    {team:'Mexico',         owner:'Teddy'},
+    {team:'South Africa',   owner:'Lauren'},
+    {team:'South Korea',    owner:'Katherine'},
+    {team:'Czechia',        owner:'Teddy'},
+  ],
+  B: [
+    {team:'Canada',              owner:'Antonio'},
+    {team:'Bosnia-Herzegovina',  owner:'Allison'},
+    {team:'Qatar',               owner:'Sinead'},
+    {team:'Switzerland',         owner:'Katherine'},
+  ],
+  C: [
+    {team:'Brazil',    owner:'Katherine'},
+    {team:'Morocco',   owner:'Teddy'},
+    {team:'Scotland',  owner:'Fi'},
+    {team:'Haiti',     owner:'Teddy'},
+  ],
+  D: [
+    {team:'United States', owner:'Allison'},
+    {team:'Paraguay',      owner:'Allison'},
+    {team:'Australia',     owner:'Teddy'},
+    {team:'Türkiye',       owner:'Lauren'},
+  ],
+  E: [
+    {team:'Germany',      owner:'Katherine'},
+    {team:'Curaçao',      owner:'Lauren'},
+    {team:'Ivory Coast',  owner:'Lauren'},
+    {team:'Ecuador',      owner:'Fi'},
+  ],
+  F: [
+    {team:'Netherlands',  owner:'Allison'},
+    {team:'Japan',        owner:'Allison'},
+    {team:'Sweden',       owner:'Lauren'},
+    {team:'Tunisia',      owner:'Katherine'},
+  ],
+  G: [
+    {team:'Belgium',      owner:'Katherine'},
+    {team:'Egypt',        owner:'Antonio'},
+    {team:'Iran',         owner:'Allison'},
+    {team:'New Zealand',  owner:'Teddy'},
+  ],
+  H: [
+    {team:'Spain',        owner:'Katherine'},
+    {team:'Cape Verde',   owner:'Sinead'},
+    {team:'Saudi Arabia', owner:'Rob'},
+    {team:'Uruguay',      owner:'Garret'},
+  ],
+  I: [
+    {team:'France',   owner:'Allison'},
+    {team:'Senegal',  owner:'Emma'},
+    {team:'Iraq',     owner:'Jenny'},
+    {team:'Norway',   owner:'Rob'},
+  ],
+  J: [
+    {team:'Argentina', owner:'Lauren'},
+    {team:'Algeria',   owner:'Fi'},
+    {team:'Austria',   owner:'Emma'},
+    {team:'Jordan',    owner:'Teddy'},
+  ],
+  K: [
+    {team:'Portugal',    owner:'Allison'},
+    {team:'DR Congo',    owner:'Fi'},
+    {team:'Uzbekistan',  owner:'Jenny'},
+    {team:'Colombia',    owner:'Abrie'},
+  ],
+  L: [
+    {team:'England',  owner:'Teddy'},
+    {team:'Croatia',  owner:'Jess'},
+    {team:'Ghana',    owner:'Fi'},
+    {team:'Panama',   owner:'Garret'},
+  ],
+};
+
+/* Round-robin match pairs: [homeIdx, awayIdx]
+   R1: 0v1, 2v3 | R2: 0v2, 1v3 | R3: 0v3, 1v2          */
+const MP = [[0,1],[2,3],[0,2],[1,3],[0,3],[1,2]];
+const ROUND = ['R1','R1','R2','R2','R3','R3'];
+
+/* ============================================================
+   SCHEDULE — UK (London/BST) kick-off times stored as UTC
+   Matches per group follow the same order as MATCH_PAIRS:
+   [0v1, 2v3, 0v2, 1v3, 0v3, 1v2]
+   ============================================================ */
+const SCHEDULE = {
+  // GROUP A: [0]Mexico [1]South Africa [2]South Korea [3]Czechia
+  A: [
+    new Date('2026-06-11T19:00:00Z'), // Mexico vs South Africa         (Thu 11 Jun, 20:00 BST)
+    new Date('2026-06-12T02:00:00Z'), // South Korea vs Czechia          (Fri 12 Jun, 03:00 BST)
+    new Date('2026-06-19T01:00:00Z'), // Mexico vs South Korea           (Fri 19 Jun, 02:00 BST)
+    new Date('2026-06-18T16:00:00Z'), // South Africa vs Czechia         (Thu 18 Jun, 17:00 BST)
+    new Date('2026-06-25T01:00:00Z'), // Mexico vs Czechia               (Thu 25 Jun, 02:00 BST)
+    new Date('2026-06-25T01:00:00Z'), // South Africa vs South Korea     (Thu 25 Jun, 02:00 BST)
+  ],
+  // GROUP B: [0]Canada [1]Bosnia-Herzegovina [2]Qatar [3]Switzerland
+  B: [
+    new Date('2026-06-12T19:00:00Z'), // Canada vs Bosnia-Herzegovina    (Fri 12 Jun, 20:00 BST)
+    new Date('2026-06-13T19:00:00Z'), // Qatar vs Switzerland            (Sat 13 Jun, 20:00 BST)
+    new Date('2026-06-18T22:00:00Z'), // Canada vs Qatar                 (Thu 18 Jun, 23:00 BST)
+    new Date('2026-06-18T19:00:00Z'), // Bosnia-Herzegovina vs Switz.   (Thu 18 Jun, 20:00 BST)
+    new Date('2026-06-24T19:00:00Z'), // Canada vs Switzerland           (Wed 24 Jun, 20:00 BST)
+    new Date('2026-06-24T19:00:00Z'), // Bosnia-Herzegovina vs Qatar     (Wed 24 Jun, 20:00 BST)
+  ],
+  // GROUP C: [0]Brazil [1]Morocco [2]Scotland [3]Haiti
+  C: [
+    new Date('2026-06-13T22:00:00Z'), // Brazil vs Morocco               (Sat 13 Jun, 23:00 BST)
+    new Date('2026-06-14T01:00:00Z'), // Scotland vs Haiti               (Sun 14 Jun, 02:00 BST)
+    new Date('2026-06-24T22:00:00Z'), // Brazil vs Scotland              (Wed 24 Jun, 23:00 BST)
+    new Date('2026-06-24T22:00:00Z'), // Morocco vs Haiti                (Wed 24 Jun, 23:00 BST)
+    new Date('2026-06-20T00:30:00Z'), // Brazil vs Haiti                 (Sat 20 Jun, 01:30 BST)
+    new Date('2026-06-19T22:00:00Z'), // Morocco vs Scotland             (Fri 19 Jun, 23:00 BST)
+  ],
+  // GROUP D: [0]United States [1]Paraguay [2]Australia [3]Türkiye
+  D: [
+    new Date('2026-06-13T01:00:00Z'), // USA vs Paraguay                 (Sat 13 Jun, 02:00 BST)
+    new Date('2026-06-14T04:00:00Z'), // Australia vs Türkiye            (Sun 14 Jun, 05:00 BST)
+    new Date('2026-06-19T19:00:00Z'), // USA vs Australia                (Fri 19 Jun, 20:00 BST)
+    new Date('2026-06-20T03:00:00Z'), // Paraguay vs Türkiye             (Sat 20 Jun, 04:00 BST)
+    new Date('2026-06-26T02:00:00Z'), // USA vs Türkiye                  (Fri 26 Jun, 03:00 BST)
+    new Date('2026-06-26T02:00:00Z'), // Paraguay vs Australia           (Fri 26 Jun, 03:00 BST)
+  ],
+  // GROUP E: [0]Germany [1]Curaçao [2]Ivory Coast [3]Ecuador
+  E: [
+    new Date('2026-06-14T17:00:00Z'), // Germany vs Curaçao              (Sun 14 Jun, 18:00 BST)
+    new Date('2026-06-14T23:00:00Z'), // Ivory Coast vs Ecuador          (Mon 15 Jun, 00:00 BST)
+    new Date('2026-06-20T20:00:00Z'), // Germany vs Ivory Coast          (Sat 20 Jun, 21:00 BST)
+    new Date('2026-06-21T00:00:00Z'), // Curaçao vs Ecuador              (Sun 21 Jun, 01:00 BST)
+    new Date('2026-06-25T20:00:00Z'), // Germany vs Ecuador              (Thu 25 Jun, 21:00 BST)
+    new Date('2026-06-25T20:00:00Z'), // Curaçao vs Ivory Coast          (Thu 25 Jun, 21:00 BST)
+  ],
+  // GROUP F: [0]Netherlands [1]Japan [2]Sweden [3]Tunisia
+  F: [
+    new Date('2026-06-14T20:00:00Z'), // Netherlands vs Japan            (Sun 14 Jun, 21:00 BST)
+    new Date('2026-06-15T02:00:00Z'), // Sweden vs Tunisia               (Mon 15 Jun, 03:00 BST)
+    new Date('2026-06-20T17:00:00Z'), // Netherlands vs Sweden           (Sat 20 Jun, 18:00 BST)
+    new Date('2026-06-21T04:00:00Z'), // Japan vs Tunisia                (Sun 21 Jun, 05:00 BST)
+    new Date('2026-06-25T23:00:00Z'), // Netherlands vs Tunisia          (Fri 26 Jun, 00:00 BST)
+    new Date('2026-06-25T23:00:00Z'), // Japan vs Sweden                 (Fri 26 Jun, 00:00 BST)
+  ],
+  // GROUP G: [0]Belgium [1]Egypt [2]Iran [3]New Zealand
+  G: [
+    new Date('2026-06-15T19:00:00Z'), // Belgium vs Egypt                (Mon 15 Jun, 20:00 BST)
+    new Date('2026-06-16T01:00:00Z'), // Iran vs New Zealand             (Tue 16 Jun, 02:00 BST)
+    new Date('2026-06-21T19:00:00Z'), // Belgium vs Iran                 (Sun 21 Jun, 20:00 BST)
+    new Date('2026-06-22T01:00:00Z'), // Egypt vs New Zealand            (Mon 22 Jun, 02:00 BST)
+    new Date('2026-06-27T03:00:00Z'), // Belgium vs New Zealand          (Sat 27 Jun, 04:00 BST)
+    new Date('2026-06-27T03:00:00Z'), // Egypt vs Iran                   (Sat 27 Jun, 04:00 BST)
+  ],
+  // GROUP H: [0]Spain [1]Cape Verde [2]Saudi Arabia [3]Uruguay
+  H: [
+    new Date('2026-06-15T16:00:00Z'), // Spain vs Cape Verde             (Mon 15 Jun, 17:00 BST)
+    new Date('2026-06-15T22:00:00Z'), // Saudi Arabia vs Uruguay         (Mon 15 Jun, 23:00 BST)
+    new Date('2026-06-21T16:00:00Z'), // Spain vs Saudi Arabia           (Sun 21 Jun, 17:00 BST)
+    new Date('2026-06-21T22:00:00Z'), // Cape Verde vs Uruguay           (Sun 21 Jun, 23:00 BST)
+    new Date('2026-06-27T00:00:00Z'), // Spain vs Uruguay                (Sat 27 Jun, 01:00 BST)
+    new Date('2026-06-27T00:00:00Z'), // Cape Verde vs Saudi Arabia      (Sat 27 Jun, 01:00 BST)
+  ],
+  // GROUP I: [0]France [1]Senegal [2]Iraq [3]Norway
+  I: [
+    new Date('2026-06-16T19:00:00Z'), // France vs Senegal               (Tue 16 Jun, 20:00 BST)
+    new Date('2026-06-16T22:00:00Z'), // Iraq vs Norway                  (Tue 16 Jun, 23:00 BST)
+    new Date('2026-06-22T21:00:00Z'), // France vs Iraq                  (Mon 22 Jun, 22:00 BST)
+    new Date('2026-06-23T00:00:00Z'), // Senegal vs Norway               (Tue 23 Jun, 01:00 BST)
+    new Date('2026-06-26T19:00:00Z'), // France vs Norway                (Fri 26 Jun, 20:00 BST)
+    new Date('2026-06-26T19:00:00Z'), // Senegal vs Iraq                 (Fri 26 Jun, 20:00 BST)
+  ],
+  // GROUP J: [0]Argentina [1]Algeria [2]Austria [3]Jordan
+  J: [
+    new Date('2026-06-17T01:00:00Z'), // Argentina vs Algeria            (Wed 17 Jun, 02:00 BST)
+    new Date('2026-06-17T04:00:00Z'), // Austria vs Jordan               (Wed 17 Jun, 05:00 BST)
+    new Date('2026-06-22T17:00:00Z'), // Argentina vs Austria            (Mon 22 Jun, 18:00 BST)
+    new Date('2026-06-23T03:00:00Z'), // Algeria vs Jordan               (Tue 23 Jun, 04:00 BST)
+    new Date('2026-06-28T02:00:00Z'), // Argentina vs Jordan             (Sun 28 Jun, 03:00 BST)
+    new Date('2026-06-28T02:00:00Z'), // Algeria vs Austria              (Sun 28 Jun, 03:00 BST)
+  ],
+  // GROUP K: [0]Portugal [1]DR Congo [2]Uzbekistan [3]Colombia
+  K: [
+    new Date('2026-06-17T17:00:00Z'), // Portugal vs DR Congo            (Wed 17 Jun, 18:00 BST)
+    new Date('2026-06-18T02:00:00Z'), // Uzbekistan vs Colombia          (Thu 18 Jun, 03:00 BST)
+    new Date('2026-06-23T17:00:00Z'), // Portugal vs Uzbekistan          (Tue 23 Jun, 18:00 BST)
+    new Date('2026-06-24T02:00:00Z'), // DR Congo vs Colombia            (Wed 24 Jun, 03:00 BST)
+    new Date('2026-06-27T23:30:00Z'), // Portugal vs Colombia            (Sun 28 Jun, 00:30 BST)
+    new Date('2026-06-27T23:30:00Z'), // DR Congo vs Uzbekistan          (Sun 28 Jun, 00:30 BST)
+  ],
+  // GROUP L: [0]England [1]Croatia [2]Ghana [3]Panama
+  L: [
+    new Date('2026-06-17T20:00:00Z'), // England vs Croatia              (Wed 17 Jun, 21:00 BST)
+    new Date('2026-06-17T23:00:00Z'), // Ghana vs Panama                 (Thu 18 Jun, 00:00 BST)
+    new Date('2026-06-23T20:00:00Z'), // England vs Ghana                (Tue 23 Jun, 21:00 BST)
+    new Date('2026-06-23T23:00:00Z'), // Croatia vs Panama               (Wed 24 Jun, 00:00 BST)
+    new Date('2026-06-27T21:00:00Z'), // England vs Panama               (Sat 27 Jun, 22:00 BST)
+    new Date('2026-06-27T21:00:00Z'), // Croatia vs Ghana                (Sat 27 Jun, 22:00 BST)
+  ],
+};
+
+/* ============================================================
+   RESULTS — UPDATE THIS BLOCK WHEN USER PROVIDES SCORES
+   Format: null = not played  |  [homeGoals, awayGoals] = played
+
+   GROUP A: [0]Mexico [1]South Africa [2]South Korea [3]Czechia
+   GROUP B: [0]Canada [1]Bosnia-Herzegovina [2]Qatar [3]Switzerland
+   GROUP C: [0]Brazil [1]Morocco [2]Scotland [3]Haiti
+   GROUP D: [0]United States [1]Paraguay [2]Australia [3]Türkiye
+   GROUP E: [0]Germany [1]Curaçao [2]Ivory Coast [3]Ecuador
+   GROUP F: [0]Netherlands [1]Japan [2]Sweden [3]Tunisia
+   GROUP G: [0]Belgium [1]Egypt [2]Iran [3]New Zealand
+   GROUP H: [0]Spain [1]Cape Verde [2]Saudi Arabia [3]Uruguay
+   GROUP I: [0]France [1]Senegal [2]Iraq [3]Norway
+   GROUP J: [0]Argentina [1]Algeria [2]Austria [3]Jordan
+   GROUP K: [0]Portugal [1]DR Congo [2]Uzbekistan [3]Colombia
+   GROUP L: [0]England [1]Croatia [2]Ghana [3]Panama
+   ============================================================ */
+const RESULTS = {
+  A: [null,null,null,null,null,null], // M1:Mex-SAf M2:SKo-Cze M3:Mex-SKo M4:SAf-Cze M5:Mex-Cze M6:SAf-SKo
+  B: [null,null,null,null,null,null], // M1:Can-Bos M2:Qat-Swi M3:Can-Qat M4:Bos-Swi M5:Can-Swi M6:Bos-Qat
+  C: [null,null,null,null,null,null], // M1:Bra-Mor M2:Sco-Hai M3:Bra-Sco M4:Mor-Hai M5:Bra-Hai M6:Mor-Sco
+  D: [null,null,null,null,null,null], // M1:USA-Par M2:Aus-Tur M3:USA-Aus M4:Par-Tur M5:USA-Tur M6:Par-Aus
+  E: [null,null,null,null,null,null], // M1:Ger-Cur M2:IvC-Ecu M3:Ger-IvC M4:Cur-Ecu M5:Ger-Ecu M6:Cur-IvC
+  F: [null,null,null,null,null,null], // M1:Ned-Jap M2:Swe-Tun M3:Ned-Swe M4:Jap-Tun M5:Ned-Tun M6:Jap-Swe
+  G: [null,null,null,null,null,null], // M1:Bel-Egy M2:Ira-NZl M3:Bel-Ira M4:Egy-NZl M5:Bel-NZl M6:Egy-Ira
+  H: [null,null,null,null,null,null], // M1:Spa-CaV M2:KSA-Uru M3:Spa-KSA M4:CaV-Uru M5:Spa-Uru M6:CaV-KSA
+  I: [null,null,null,null,null,null], // M1:Fra-Sen M2:Ira-Nor M3:Fra-Ira M4:Sen-Nor M5:Fra-Nor M6:Sen-Ira
+  J: [null,null,null,null,null,null], // M1:Arg-Alg M2:Aut-Jor M3:Arg-Aut M4:Alg-Jor M5:Arg-Jor M6:Alg-Aut
+  K: [null,null,null,null,null,null], // M1:Por-DRC M2:Uzb-Col M3:Por-Uzb M4:DRC-Col M5:Por-Col M6:DRC-Uzb
+  L: [null,null,null,null,null,null], // M1:Eng-Cro M2:Gha-Pan M3:Eng-Gha M4:Cro-Pan M5:Eng-Pan M6:Cro-Gha
+};
+
+/* ============================================================
+   STANDINGS LOGIC
+   ============================================================ */
+function calcStandings(letter) {
+  const teams = GROUPS[letter];
+  const s = teams.map((t, i) => ({
+    ...t, idx: i,
+    p:0, w:0, d:0, l:0, gf:0, ga:0, gd:0, pts:0
+  }));
+  MP.forEach(([hi, ai], mi) => {
+    const r = RESULTS[letter][mi];
+    if (!r) return;
+    const [hg, ag] = r;
+    s[hi].p++; s[ai].p++;
+    s[hi].gf += hg; s[hi].ga += ag; s[hi].gd += hg - ag;
+    s[ai].gf += ag; s[ai].ga += hg; s[ai].gd += ag - hg;
+    if (hg > ag)      { s[hi].w++; s[hi].pts += 3; s[ai].l++; }
+    else if (hg < ag) { s[ai].w++; s[ai].pts += 3; s[hi].l++; }
+    else              { s[hi].d++; s[hi].pts++;     s[ai].d++; s[ai].pts++; }
+  });
+  s.sort((a, b) =>
+    b.pts - a.pts || b.gd - a.gd || b.gf - a.gf || a.team.localeCompare(b.team)
+  );
+  return s;
+}
+
+function isComplete(letter) { return RESULTS[letter].every(r => r !== null); }
+function isStarted(letter)  { return RESULTS[letter].some(r => r !== null);  }
+
+/* ============================================================
+   OWNER CHIP
+   ============================================================ */
+function chip(owner) {
+  const c = OC[owner] || '#888';
+  return `<span class="owner-chip" style="background:${c}22;color:${c};border:1px solid ${c}55">${owner}</span>`;
+}
+
+/* ============================================================
+   RENDER GROUPS
+   ============================================================ */
+function renderGroups() {
+  const grid = document.getElementById('groups-grid');
+  grid.innerHTML = '';
+  Object.keys(GROUPS).forEach(letter => {
+    const teams   = GROUPS[letter];
+    const std     = calcStandings(letter);
+    const done    = isComplete(letter);
+    const started = isStarted(letter);
+
+    /* standings rows */
+    const tRows = std.map((s, pos) => {
+      const rc = done ? (pos < 2 ? 'row-q1' : pos === 2 ? 'row-q2' : 'row-elim') : '';
+      const pc = `p${pos+1}`;
+      const gdStr = s.gd === 0 ? '0' : (s.gd > 0 ? '+' + s.gd : s.gd);
+      const gdCls = s.gd > 0 ? 'gd-pos' : s.gd < 0 ? 'gd-neg' : '';
+      const tn = s.team.length > 14 ? s.team.slice(0,13) + '…' : s.team;
+      return `<tr class="${rc}">
+        <td class="ta-l">
+          <div class="team-cell">
+            <span class="pos-num ${pc}">${pos+1}</span>
+            <div>
+              <div class="team-name" title="${s.team}">${tn}</div>
+              ${chip(s.owner)}
+            </div>
+          </div>
+        </td>
+        <td><strong>${s.pts}</strong></td>
+        <td>${s.p}</td>
+        <td>${s.w}</td>
+        <td>${s.d}</td>
+        <td>${s.l}</td>
+        <td>${s.gf}</td>
+        <td>${s.ga}</td>
+        <td class="${gdCls}">${gdStr}</td>
+      </tr>`;
+    }).join('');
+
+    /* match rows */
+    const mRows = MP.map(([hi, ai], mi) => {
+      const r   = RESULTS[letter][mi];
+      const ht  = teams[hi].team;
+      const at  = teams[ai].team;
+      const sc  = r ? `${r[0]}–${r[1]}` : '–';
+      const cls = r ? '' : 'pending';
+      const hts = ht.length > 13 ? ht.slice(0,12)+'…' : ht;
+      const ats = at.length > 13 ? at.slice(0,12)+'…' : at;
+      return `<div class="match-row">
+        <span class="round-tag">${ROUND[mi]}</span>
+        <span class="match-team right" title="${ht}">${hts}</span>
+        <span class="score-btn ${cls}"
+              onclick="openModal('${letter}',${mi})"
+              title="Click to enter result">${sc}</span>
+        <span class="match-team" title="${at}">${ats}</span>
+      </div>`;
+    }).join('');
+
+    const badge = done
+      ? '<span class="status-badge" style="color:#5ddb7a">✓ COMPLETE</span>'
+      : started
+      ? '<span class="status-badge" style="color:var(--gold)">● IN PROGRESS</span>'
+      : '<span class="status-badge" style="color:var(--text2)">Upcoming</span>';
+
+    const card = document.createElement('div');
+    card.className = 'group-card';
+    card.innerHTML = `
+      <div class="group-card-hdr">
+        <div class="group-letter">${letter}</div>
+        <div class="group-meta">
+          <div class="group-meta-title">Group ${letter}</div>
+          ${badge}
+        </div>
+      </div>
+      <table class="s-table">
+        <thead><tr>
+          <th class="ta-l">Team</th>
+          <th title="Points">Pts</th>
+          <th title="Played">P</th>
+          <th title="Won">W</th>
+          <th title="Drawn">D</th>
+          <th title="Lost">L</th>
+          <th title="Goals For">GF</th>
+          <th title="Goals Against">GA</th>
+          <th title="Goal Difference">GD</th>
+        </tr></thead>
+        <tbody>${tRows}</tbody>
+      </table>
+      <div class="matches-toggle" onclick="toggleMatches(this)">
+        <span>Match Results</span><span>▼</span>
+      </div>
+      <div class="matches-body">${mRows}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ============================================================
+   RENDER SIDEBAR PARTICIPANTS
+   ============================================================ */
+function teamStatusMap() {
+  const map = {};
+  Object.keys(GROUPS).forEach(letter => {
+    const done = isComplete(letter);
+    const std  = calcStandings(letter);
+    std.forEach((s, pos) => {
+      if (!done)     map[s.team] = 'active';
+      else if (pos < 2) map[s.team] = 'qualified';
+      else if (pos === 2) map[s.team] = 'potential';
+      else map[s.team] = 'eliminated';
+    });
+  });
+  return map;
+}
+
+function allParticipants() {
+  const map = {};
+  Object.values(GROUPS).flat().forEach(({team, owner}) => {
+    if (!map[owner]) map[owner] = {name: owner, teams: []};
+    map[owner].teams.push(team);
+  });
+  return Object.values(map).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function renderSidebar() {
+  const el   = document.getElementById('sidebar-participants');
+  const tmap = teamStatusMap();
+  el.innerHTML = '';
+  allParticipants().forEach(p => {
+    const c      = OC[p.name] || '#888';
+    const allOut = p.teams.every(t => tmap[t] === 'eliminated');
+    const chips  = p.teams.map(t => {
+      const st  = tmap[t];
+      const cls = st === 'eliminated' ? 'out' : st === 'potential' ? 'potential' : '';
+      return `<span class="t-chip ${cls}" style="background:${c}20;color:${c};border-color:${c}44">${t}</span>`;
+    }).join('');
+    el.innerHTML += `
+      <div class="p-card${allOut ? ' all-out' : ''}">
+        <div class="p-name${allOut ? ' crossed' : ''}" style="color:${c}">
+          <span>●</span>${p.name}
+        </div>
+        <div class="p-teams">${chips}</div>
+      </div>`;
+  });
+}
+
+/* ============================================================
+   RENDER FULL PARTICIPANTS TAB
+   ============================================================ */
+function renderFullParticipants() {
+  const el   = document.getElementById('full-participants');
+  const tmap = teamStatusMap();
+  el.innerHTML = '';
+  allParticipants().forEach(p => {
+    const c      = OC[p.name] || '#888';
+    const allOut = p.teams.every(t => tmap[t] === 'eliminated');
+    const rows   = p.teams.map(t => {
+      const st   = tmap[t];
+      const icon = st === 'qualified' ? '✅' : st === 'eliminated' ? '❌' : st === 'potential' ? '🟡' : '🔵';
+      const grp  = Object.keys(GROUPS).find(g => GROUPS[g].some(x => x.team === t));
+      const out  = st === 'eliminated' ? ' out' : '';
+      return `<div class="full-team-row${out}">
+        <span>${icon}</span>
+        <span style="flex:1">${t}</span>
+        <span class="grp-tag">Grp ${grp}</span>
+      </div>`;
+    }).join('');
+    el.innerHTML += `
+      <div class="full-p-card${allOut ? ' all-out' : ''}" style="border:1px solid ${c}44">
+        <div class="full-p-title${allOut ? ' crossed' : ''}" style="color:${c}">
+          ${p.name}
+          <span style="font-size:10px;opacity:0.55;font-weight:500">${p.teams.length} team${p.teams.length>1?'s':''}</span>
+        </div>
+        ${rows}
+      </div>`;
+  });
+}
+
+/* ============================================================
+   RENDER KNOCKOUT TAB
+   ============================================================ */
+function renderKnockout() {
+  const el   = document.getElementById('knockout-content');
+  const tmap = teamStatusMap();
+  const any  = Object.keys(GROUPS).some(g => isStarted(g));
+  const all  = Object.keys(GROUPS).every(g => isComplete(g));
+
+  if (!any) {
+    el.innerHTML = `
+      <div class="ko-placeholder">
+        <div style="font-size:64px;margin-bottom:14px">🏆</div>
+        <h2 style="font-size:22px;color:var(--text);margin-bottom:10px">Knockout Bracket</h2>
+        <p style="max-width:420px;line-height:1.7;font-size:13px">
+          The knockout bracket will be seeded once all 12 groups complete their group stage.
+          32 teams advance: the top 2 from each group plus the 8 best 3rd-placed teams.
+        </p>
+        <p style="margin-top:16px;color:var(--gold);font-weight:800;font-size:14px">
+          ⚽ Group Stage opens June 11, 2026
+        </p>
+      </div>`;
+    return;
+  }
+
+  /* Build qualified teams grid */
+  let html = `<div class="section-hdr"><div class="section-label">Qualified Teams by Group</div></div>
+    <div class="ko-qualified-grid">`;
+
+  Object.keys(GROUPS).forEach(letter => {
+    const std  = calcStandings(letter);
+    const done = isComplete(letter);
+    html += `<div class="ko-group-box">
+      <div class="ko-group-label">Group ${letter}</div>`;
+    std.slice(0, 2).forEach((s, pos) => {
+      const c      = OC[s.owner] || '#888';
+      const label  = pos === 0 ? '1st' : '2nd';
+      const team   = done ? s.team : '?';
+      const ownerH = done ? `<span class="owner-chip" style="background:${c}22;color:${c};border:1px solid ${c}44;font-size:7px">${s.owner}</span>` : '';
+      html += `<div class="ko-team-row">
+        <span style="font-size:9px;font-weight:700;color:${pos===0?'var(--gold)':'#b0b0b0'};min-width:22px">${label}</span>
+        <span style="flex:1;font-size:11px">${team}</span>
+        ${ownerH}
+      </div>`;
+    });
+    html += '</div>';
+  });
+
+  html += `</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+                padding:28px;text-align:center;color:var(--text2);">
+      <div style="font-size:40px;margin-bottom:12px">📋</div>
+      <div style="font-size:16px;font-weight:800;color:var(--text);margin-bottom:8px">
+        ${all ? 'Round of 32 — Bracket Coming' : 'Group Stage In Progress'}
+      </div>
+      <div style="font-size:12px;line-height:1.8;max-width:460px;margin:0 auto">
+        ${all
+          ? 'All group stages complete! The Round of 32 bracket will be set up in the next update based on the official FIFA seedings.'
+          : 'The full knockout bracket will be revealed once all 12 groups finish their matches. Stay tuned!'}
+      </div>
+    </div>`;
+
+  el.innerHTML = html;
+}
+
+/* ============================================================
+   NEXT GAME BANNER
+   ============================================================ */
+function renderNextGame() {
+  const bar  = document.getElementById('next-game-bar');
+  const now  = Date.now();
+  let live   = null;
+  let next   = null;
+
+  for (const letter of Object.keys(GROUPS)) {
+    for (let mi = 0; mi < 6; mi++) {
+      if (RESULTS[letter][mi] !== null) continue; // result already entered
+      const ko  = SCHEDULE[letter][mi].getTime();
+      const end = ko + 2.5 * 3600000; // assume ~2.5hr window for "live"
+      if (ko <= now && now < end) {
+        if (!live || ko < live.ko) live = {letter, mi, ko};
+      } else if (ko > now) {
+        if (!next || ko < next.ko) next = {letter, mi, ko};
+      }
+    }
+  }
+
+  const match = live || next;
+  if (!match) {
+    bar.innerHTML = `<span class="ng-label">⚽ WC 2026</span>
+      <span style="color:var(--text2)">All group stage matches complete — knockout stage underway!</span>`;
+    return;
+  }
+
+  const {letter, mi, ko} = match;
+  const [hi, ai] = MP[mi];
+  const home = GROUPS[letter][hi].team;
+  const away = GROUPS[letter][ai].team;
+  const d    = new Date(ko);
+
+  const dayStr  = d.toLocaleString('en-GB', {timeZone:'Europe/London', weekday:'short', day:'numeric', month:'short'});
+  const timeStr = d.toLocaleString('en-GB', {timeZone:'Europe/London', hour:'2-digit', minute:'2-digit', hour12:false});
+
+  if (live) {
+    bar.innerHTML = `
+      <span class="ng-live">🔴 Live</span>
+      <span style="color:#fff;font-weight:700">${home}</span>
+      <span style="color:var(--text2)">vs</span>
+      <span style="color:#fff;font-weight:700">${away}</span>
+      <span style="color:var(--text2);margin:0 4px">·</span>
+      <span style="color:var(--text2)">Group ${letter}</span>
+      <span style="color:var(--text2);margin-left:8px;font-size:10px">(Enter result when done ↗)</span>`;
+  } else {
+    bar.innerHTML = `
+      <span class="ng-label">Next Match</span>
+      <span style="color:var(--gold);font-weight:700">${home}</span>
+      <span style="color:var(--text2)">vs</span>
+      <span style="color:var(--gold);font-weight:700">${away}</span>
+      <span style="color:var(--text2);margin:0 5px">·</span>
+      <span style="color:var(--text2)">Group ${letter}</span>
+      <span style="color:var(--text2);margin:0 5px">·</span>
+      <span style="color:#fff;font-weight:600">${dayStr} at ${timeStr} (London)</span>`;
+  }
+}
+
+/* ============================================================
+   MATCH TOGGLES
+   ============================================================ */
+function toggleMatches(el) {
+  const body = el.nextElementSibling;
+  body.classList.toggle('open');
+  el.querySelector('span:last-child').textContent = body.classList.contains('open') ? '▲' : '▼';
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+let activeMatch = null;
+
+function openModal(letter, mi) {
+  const teams = GROUPS[letter];
+  const [hi, ai] = MP[mi];
+  activeMatch = {letter, mi};
+  document.getElementById('m-home').textContent = teams[hi].team;
+  document.getElementById('m-away').textContent = teams[ai].team;
+  const r = RESULTS[letter][mi];
+  document.getElementById('sh').value = r ? r[0] : 0;
+  document.getElementById('sa').value = r ? r[1] : 0;
+  document.getElementById('btn-clr').style.display = r ? 'flex' : 'none';
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('sh').focus();
+  document.getElementById('sh').select();
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  activeMatch = null;
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+function saveResult() {
+  if (!activeMatch) return;
+  const {letter, mi} = activeMatch;
+  const h = Math.max(0, parseInt(document.getElementById('sh').value) || 0);
+  const a = Math.max(0, parseInt(document.getElementById('sa').value) || 0);
+  RESULTS[letter][mi] = [h, a];
+  closeModal();
+  renderAll();
+}
+
+function clearResult() {
+  if (!activeMatch) return;
+  RESULTS[activeMatch.letter][activeMatch.mi] = null;
+  closeModal();
+  renderAll();
+}
+
+/* Keyboard shortcuts in modal */
+document.addEventListener('keydown', e => {
+  if (!activeMatch) return;
+  if (e.key === 'Enter') saveResult();
+  if (e.key === 'Escape') closeModal();
+});
+
+/* ============================================================
+   TABS
+   ============================================================ */
+function switchTab(name) {
+  const names = ['groups','knockout','participants'];
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', names[i] === name));
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`tab-${name}`).classList.add('active');
+  if (name === 'knockout')     renderKnockout();
+  if (name === 'participants') renderFullParticipants();
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function renderAll() {
+  renderGroups();
+  renderSidebar();
+  renderNextGame();
+}
+
+renderAll();
+</script>
+</body>
+</html>
