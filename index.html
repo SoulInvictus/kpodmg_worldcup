@@ -65,31 +65,49 @@ header {
 /* ── NEXT GAME BANNER ── */
 #next-game-bar {
   background: linear-gradient(90deg, #110820 0%, #081525 100%);
-  border-bottom: 1px solid rgba(245,197,24,0.25);
-  padding: 7px 24px;
+  border-bottom: 2px solid rgba(245,197,24,0.3);
+  padding: 12px 24px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  gap: 16px;
   flex-wrap: wrap;
-  min-height: 34px;
 }
 .ng-label {
   background: var(--gold); color: #000;
-  font-size: 9px; font-weight: 900;
-  padding: 2px 8px; border-radius: 3px;
+  font-size: 10px; font-weight: 900;
+  padding: 4px 10px; border-radius: 4px;
   letter-spacing: 1.5px; text-transform: uppercase;
   flex-shrink: 0;
 }
 .ng-live {
   background: var(--red); color: #fff;
-  font-size: 9px; font-weight: 900;
-  padding: 2px 8px; border-radius: 3px;
+  font-size: 10px; font-weight: 900;
+  padding: 4px 10px; border-radius: 4px;
   letter-spacing: 1.5px; text-transform: uppercase;
   flex-shrink: 0; animation: pulse 1.4s infinite;
 }
 @keyframes pulse {
   0%,100% { opacity:1; } 50% { opacity:0.55; }
+}
+.ng-combatant {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1px; min-width: 80px;
+}
+.ng-owner {
+  font-size: 17px; font-weight: 900; line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+.ng-team {
+  font-size: 11px; color: var(--text2); font-weight: 500;
+}
+.ng-vs {
+  font-size: 20px; font-weight: 900; color: var(--text2);
+  flex-shrink: 0;
+}
+.ng-meta {
+  font-size: 11px; color: var(--text2);
+  border-left: 1px solid var(--border);
+  padding-left: 16px; line-height: 1.7;
 }
 
 /* ── TABS ── */
@@ -1065,25 +1083,28 @@ function renderNextGame() {
   const dayStr  = d.toLocaleString('en-GB', {timeZone:'Europe/London', weekday:'short', day:'numeric', month:'short'});
   const timeStr = d.toLocaleString('en-GB', {timeZone:'Europe/London', hour:'2-digit', minute:'2-digit', hour12:false});
 
+  const homeOwner = GROUPS[letter][hi].owner;
+  const awayOwner = GROUPS[letter][ai].owner;
+  const hc = OC[homeOwner] || '#fff';
+  const ac = OC[awayOwner] || '#fff';
+
+  const matchup = `
+    <div class="ng-combatant">
+      <div class="ng-owner" style="color:${hc}">${homeOwner}</div>
+      <div class="ng-team">${home}</div>
+    </div>
+    <div class="ng-vs">vs</div>
+    <div class="ng-combatant">
+      <div class="ng-owner" style="color:${ac}">${awayOwner}</div>
+      <div class="ng-team">${away}</div>
+    </div>`;
+
   if (live) {
-    bar.innerHTML = `
-      <span class="ng-live">🔴 Live</span>
-      <span style="color:#fff;font-weight:700">${home}</span>
-      <span style="color:var(--text2)">vs</span>
-      <span style="color:#fff;font-weight:700">${away}</span>
-      <span style="color:var(--text2);margin:0 4px">·</span>
-      <span style="color:var(--text2)">Group ${letter}</span>
-      <span style="color:var(--text2);margin-left:8px;font-size:10px">(Enter result when done ↗)</span>`;
+    bar.innerHTML = `<span class="ng-live">🔴 Live</span>${matchup}
+      <div class="ng-meta">Group ${letter}<br><span style="font-size:10px;opacity:0.7">Enter result when done ↗</span></div>`;
   } else {
-    bar.innerHTML = `
-      <span class="ng-label">Next Match</span>
-      <span style="color:var(--gold);font-weight:700">${home}</span>
-      <span style="color:var(--text2)">vs</span>
-      <span style="color:var(--gold);font-weight:700">${away}</span>
-      <span style="color:var(--text2);margin:0 5px">·</span>
-      <span style="color:var(--text2)">Group ${letter}</span>
-      <span style="color:var(--text2);margin:0 5px">·</span>
-      <span style="color:#fff;font-weight:600">${dayStr} at ${timeStr} (London)</span>`;
+    bar.innerHTML = `<span class="ng-label">Next Match</span>${matchup}
+      <div class="ng-meta">Group ${letter}<br>${dayStr} at <strong style="color:#fff">${timeStr}</strong> (London)</div>`;
   }
 }
 
