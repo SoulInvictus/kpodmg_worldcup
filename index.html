@@ -43,7 +43,8 @@ header {
   z-index: 200;
   box-shadow: 0 4px 20px rgba(0,0,0,0.6);
 }
-.header-logo svg { width: 52px; height: 52px; flex-shrink: 0; }
+.header-logo { flex-shrink: 0; width: 64px; height: 64px; border-radius: 10px; overflow: hidden; background: #060d1e; display: flex; align-items: center; justify-content: center; }
+.header-logo img { width: 64px; height: 64px; object-fit: contain; mix-blend-mode: screen; display: block; }
 .header-text { flex: 1; }
 .header-eyebrow {
   font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
@@ -408,29 +409,10 @@ header {
 <!-- ═══════════════ HEADER ═══════════════ -->
 <header>
   <div class="header-logo">
-    <!-- FIFA 2026 Trophy SVG -->
-    <svg viewBox="0 0 80 90" xmlns="http://www.w3.org/2000/svg">
-      <!-- Base -->
-      <rect x="18" y="78" width="44" height="6" rx="2" fill="#F5C518"/>
-      <rect x="22" y="72" width="36" height="7" rx="1" fill="#F5C518"/>
-      <!-- Stem -->
-      <rect x="32" y="58" width="16" height="15" fill="#F5C518"/>
-      <!-- Cup body -->
-      <path d="M20 10 L60 10 L55 52 Q40 62 25 52 Z" fill="#F5C518"/>
-      <!-- Cup shine -->
-      <path d="M28 14 L38 14 L35 46 Q32 50 29 46 Z" fill="rgba(255,255,255,0.15)"/>
-      <!-- Handles -->
-      <path d="M20 14 Q6 14 6 28 Q6 42 20 44" stroke="#F5C518" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <path d="M60 14 Q74 14 74 28 Q74 42 60 44" stroke="#F5C518" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <!-- Handle accent -->
-      <path d="M20 14 Q8 14 8 28 Q8 40 20 44" stroke="#E30613" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <path d="M60 14 Q72 14 72 28 Q72 40 60 44" stroke="#E30613" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <!-- FIFA text on cup -->
-      <text x="40" y="36" text-anchor="middle" fill="#060d1e" font-size="9" font-weight="900" font-family="Arial, sans-serif" letter-spacing="1">FIFA</text>
-      <text x="40" y="46" text-anchor="middle" fill="#060d1e" font-size="6" font-weight="700" font-family="Arial, sans-serif" letter-spacing="0.5">2026</text>
-      <!-- Stars above cup -->
-      <text x="40" y="8" text-anchor="middle" fill="#F5C518" font-size="7">★★★</text>
-    </svg>
+    <img
+      src="https://assets.goal.com/images/v3/blt53809cd345ed1930/FwYWk8RagAE8mIn_(1).jpg?auto=webp&format=pjpg&width=200&quality=80"
+      alt="FIFA World Cup 2026 Logo"
+    />
   </div>
   <div class="header-text">
     <div class="header-eyebrow">FIFA World Cup 2026™ · Canada · Mexico · USA</div>
@@ -1193,24 +1175,5 @@ function renderAll() {
 
 renderAll();
 </script>
-
-<!-- ── VIEW COUNTER FOOTER ── -->
-<footer style="
-  background: linear-gradient(135deg, #080514 0%, #0c1a35 100%);
-  border-top: 2px solid rgba(245,197,24,0.2);
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 32px;
-">
-  <span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8ba4c7;">
-    👁 Page Views
-  </span>
-  <!-- Hits counter: today / all-time (unique + total) -->
-  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fsoulinvictus.github.io%2Fkpodmg_worldcup%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Views&edge_flat=false"/></a>
-</footer>
 </body>
 </html>
