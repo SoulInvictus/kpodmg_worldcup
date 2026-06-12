@@ -37,7 +37,6 @@ GROUPS = {
 
 MP = [[0, 1], [2, 3], [0, 2], [1, 3], [0, 3], [1, 2]]
 
-# Map ESPN/API names to canonical names used in GROUPS
 TEAM_ALIASES = {
     'USA': 'United States',
     'US': 'United States',
@@ -55,7 +54,6 @@ TEAM_ALIASES = {
     'Bosnia & Herzegovina': 'Bosnia-Herzegovina',
 }
 
-# Build lookup: canonical_name -> (group, position)
 TEAM_INDEX: dict[str, tuple[str, int]] = {}
 for grp, teams in GROUPS.items():
     for pos, team in enumerate(teams):
@@ -130,7 +128,6 @@ def fetch_espn_results() -> list[dict]:
 
 
 def apply_espn_results(existing: dict[str, list], matches: list[dict]) -> dict[str, list]:
-    """Merge ESPN results into existing; never overwrite a known result with null."""
     updated = {g: list(existing[g]) for g in GROUPS}
     for match in matches:
         h_loc = TEAM_INDEX.get(match['home'])
